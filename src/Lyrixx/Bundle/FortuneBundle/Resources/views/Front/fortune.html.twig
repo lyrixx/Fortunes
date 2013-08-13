@@ -1,0 +1,23 @@
+<div class="panel">
+
+    <dl class="dl-horizontal">
+        {% for quote in fortune.quotesAsArray %}
+            <dt>{{ random_color(quote.nick|default('')) }}</dt>
+            <dd>{{ quote.quote}}</dd>
+        {% endfor %}
+    </dl>
+
+    <div class="panel-footer">
+        <a href="{{ url('fortune_show', { id: fortune.id }) }}">
+            #{{ fortune.id }}
+        </a>
+        by {{ fortune.author|default('Anonymous') }}
+        at {{ fortune.createdAt|date('Y-m-d') }}
+        <div class="pull-right votes" data-fortune-id="{{ fortune.id }}">
+            <a href="{{ url('fortune_vote', { id: fortune.id, dir:'down', token: token }) }}"><span class="badge">-</span></a>
+            <span class="label label-{{ 0 == fortune.votes ? 'warning' : (0 < fortune.votes ? 'success' : 'danger') }}">{{ fortune.votes }}</span>
+            <a href="{{ url('fortune_vote', { id: fortune.id, dir:'up', token: token }) }}"><span class="badge">+</span></a>
+        </div>
+    </div>
+
+</div>

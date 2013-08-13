@@ -1,0 +1,50 @@
+{% use "form_div_layout.html.twig" %}
+
+{# Rows #}
+
+{% block form_row %}
+{% spaceless %}
+    <div class="form-group{% if not form.vars.valid %} has-error{% endif %}">
+        {{ form_label(form) }}
+        {{ form_widget(form) }}
+        {{ form_errors(form) }}
+    </div>
+{% endspaceless %}
+{% endblock form_row %}
+
+{% block widget_attributes %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock widget_attributes %}
+
+{% block button_attributes %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn btn-primary')|trim}) %}
+    {{ parent() }}
+
+{% endspaceless %}
+{% endblock button_attributes %}
+
+
+{% block form_label %}
+{% spaceless %}
+    {% if label is not sameas(false) %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control-label')|trim}) %}
+    {% endif %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock form_label %}
+
+{% block form_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <ul class="unstyled">
+        {% for error in errors %}
+            <li>{{ error.message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}

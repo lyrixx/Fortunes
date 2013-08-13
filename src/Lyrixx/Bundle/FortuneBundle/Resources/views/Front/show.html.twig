@@ -1,0 +1,10 @@
+{% extends '@LyrixxFortune/layout.html.twig' %}
+
+{% block content %}
+    {{ include('@LyrixxFortune/Front/fortune.html.twig', {fortune: fortune, token: token}, with_context = false) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ include('@LyrixxFortune/Front/fortune.js.twig') }}
+{% endblock %}

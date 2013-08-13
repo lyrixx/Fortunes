@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Fortunes{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets filter="lessphp" output="css/styles.css"
+                 "@LyrixxFortuneBundle/Resources/public/less/styles.less"
+            %}
+                <link rel="stylesheet" href="{{ asset(asset_url) }}"  media="screen"/>
+            {% endstylesheets %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block body %}
+            <div class="container">
+                {% block nav %}
+                    <div class="navbar">
+                        <a class="navbar-brand" href="{{ url('fortune_list')}}">Fortunes</a>
+                        <ul class="nav navbar-nav">
+                            {% set route = app.request.attributes.get('_route') %}
+                            <li {% if 'fortune_list' == route %}class="active"{% endif %}><a href="{{ url('fortune_list')}}">Last</a></li>
+                            <li {% if 'fortune_new' == route %}class="active"{% endif %}><a href="{{ url('fortune_new')}}">Add a new one</a></li>
+                            <li {% if 'fortune_list_top' == route %}class="active"{% endif %}><a href="{{ url('fortune_list_top')}}">Top</a></li>
+                            <li {% if 'fortune_list_flop' == route %}class="active"{% endif %}><a href="{{ url('fortune_list_flop')}}">Flop</a></li>
+                        </ul>
+                    </div>
+                {% endblock %}
+                {% block flash %}
+                    {% for level in ['success', 'info', 'alert', 'danger'] %}
+                        {% for message in app.session.flashBag.get(level) %}
+                            <div class="alert alert-{{ level }}">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endblock %}
+                {% block content ''%}
+            </div>
+        {% endblock %}
+        {% block javascripts %}
+            {% javascripts output='js/script.js'
+                '../components/jquery/jquery.min.js'
+                '../vendor/twitter/bootstrap/js/tooltip.js'
+                '../vendor/twitter/bootstrap/js/*.js'
+                '@LyrixxFortuneBundle/Resources/public/js/storage.js'
+                '@LyrixxFortuneBundle/Resources/public/js/votes.js'
+            %}
+                <script type="text/javascript" src="{{ asset(asset_url) }}"></script>
+            {% endjavascripts %}
+
+        {% endblock %}
+    </body>
+</html>

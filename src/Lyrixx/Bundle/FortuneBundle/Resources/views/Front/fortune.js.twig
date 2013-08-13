@@ -1,0 +1,46 @@
+<script>
+    (function($) {
+        $(function() {
+            $('.votes').each(function(i, votes) {
+                var $votes = $(votes);
+                var fortuneId = $votes.data('fortune-id');
+                if (fortune.storage.has(fortuneId)) {
+                    $('a', $votes).css('visibility', 'hidden');
+                }
+            });
+
+            $('.votes a').on('click', function(e) {
+                e.preventDefault();
+
+                var $this = $(this);
+
+                var $parent = $this.parent();
+                $('a', $parent).css('visibility', 'hidden');
+
+                var fortuneId = $parent.data('fortune-id');
+                if (fortune.storage.has(fortuneId)) {
+                    alert('You have alredy voted for this fortunes');
+
+                    return;
+                };
+                fortune.storage.add(fortuneId);
+
+                $.ajax({
+                    url: $this.attr('href'),
+                    accepts: 'application/json',
+                    statusCode: {
+                        200: function(data) {
+                            var $votesLabel = $('.label', $parent);
+
+                            fortune.votes.updateClass($votesLabel, data.votes);
+                            $votesLabel.html(data.votes);
+                        },
+                        400: function() {
+                            alert('Whay did you try to do ???');
+                        }
+                    }
+                })
+            });
+        });
+    })(jQuery);
+</script>

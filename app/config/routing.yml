@@ -1,0 +1,5 @@
+lyrixx_fortune:
+    resource: "@LyrixxFortuneBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

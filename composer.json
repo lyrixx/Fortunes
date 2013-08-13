@@ -7,17 +7,19 @@
         "psr-0": { "": "src/" }
     },
     "require": {
-        "php": ">=5.3.3",
-        "symfony/symfony": "2.3.*",
-        "doctrine/orm": ">=2.2.3,<2.4-dev",
+        "components/jquery": "2.0.*",
         "doctrine/doctrine-bundle": "1.2.*",
-        "twig/extensions": "1.0.*",
-        "symfony/assetic-bundle": "2.3.*",
-        "symfony/monolog-bundle": "2.3.*",
+        "doctrine/orm": ">=2.2.3,<2.4-dev",
+        "incenteev/composer-parameter-handler": "~2.0",
+        "leafo/lessphp": "0.4.*",
         "sensio/distribution-bundle": "2.3.*",
         "sensio/framework-extra-bundle": "2.3.*",
         "sensio/generator-bundle": "2.3.*",
-        "incenteev/composer-parameter-handler": "~2.0"
+        "symfony/assetic-bundle": "2.3.*",
+        "symfony/monolog-bundle": "2.3.*",
+        "symfony/symfony": "2.3.*",
+        "twitter/bootstrap": "v3.0.0-rc1@rc",
+        "twig/extensions": "1.0.*"
     },
     "scripts": {
         "post-install-cmd": [

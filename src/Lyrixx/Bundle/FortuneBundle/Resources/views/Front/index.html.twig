@@ -1,0 +1,15 @@
+{% extends '@LyrixxFortune/layout.html.twig' %}
+
+{% block content %}
+    {% for fortune in fortunes %}
+        {{ include('@LyrixxFortune/Front/fortune.html.twig', {fortune: fortune, token: token}, with_context = false) }}
+    {% else %}
+        There is no fortunes yet, but you can
+    {% endfor %}
+    <a href="{{ url('fortune_new') }}" class="btn btn-primary">add a new one</a>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ include('@LyrixxFortune/Front/fortune.js.twig') }}
+{% endblock %}
