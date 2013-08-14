@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "4dd81348a870b627d841066a0affc129",
+    "hash": "8e2673c88384beacb3973703d836aae8",
     "packages": [
         {
             "name": "components/jquery",
@@ -1194,16 +1194,16 @@
         },
         {
             "name": "twitter/bootstrap",
-            "version": "v3.0.0-rc1",
+            "version": "v3.0.0-rc.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "v3.0.0-rc1"
+                "reference": "v3.0.0-rc.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/v3.0.0-rc1",
-                "reference": "v3.0.0-rc1",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/v3.0.0-rc.2",
+                "reference": "v3.0.0-rc.2",
                 "shasum": ""
             },
             "type": "library",
@@ -1227,7 +1227,7 @@
                 "bootstrap",
                 "css"
             ],
-            "time": "2013-07-27 08:06:59"
+            "time": "2013-08-13 23:00:05"
         }
     ],
     "packages-dev": [
