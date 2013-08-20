@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "8e2673c88384beacb3973703d836aae8",
+    "hash": "2cece0e36000398fdc561a583dbd8de7",
     "packages": [
         {
             "name": "components/jquery",
@@ -1194,16 +1194,16 @@
         },
         {
             "name": "twitter/bootstrap",
-            "version": "v3.0.0-rc.2",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "v3.0.0-rc.2"
+                "reference": "v3.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/v3.0.0-rc.2",
-                "reference": "v3.0.0-rc.2",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/v3.0.0",
+                "reference": "v3.0.0",
                 "shasum": ""
             },
             "type": "library",
@@ -1221,13 +1221,13 @@
                     "email": "jacobthornton@gmail.com"
                 }
             ],
-            "description": "Sleek, intuitive, and powerful front-end framework for faster and easier web development.",
+            "description": "Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.",
             "homepage": "http://getbootstrap.com",
             "keywords": [
                 "bootstrap",
                 "css"
             ],
-            "time": "2013-08-13 23:00:05"
+            "time": "2013-08-19 21:18:20"
         }
     ],
     "packages-dev": [
@@ -1237,9 +1237,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "twitter/bootstrap": 5
-    },
+    "stability-flags": [
+
+    ],
     "platform": [
 
     ],
