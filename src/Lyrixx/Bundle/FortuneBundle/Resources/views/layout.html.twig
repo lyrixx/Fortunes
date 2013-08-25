@@ -17,7 +17,7 @@
         {% block body %}
             <div class="container">
                 {% block nav %}
-                    <div class="navbar">
+                    <nav class="navbar navbar-default" role="navigation">
                         <a class="navbar-brand" href="{{ url('fortune_list')}}">Fortunes</a>
                         <ul class="nav navbar-nav">
                             {% set route = app.request.attributes.get('_route') %}
@@ -26,7 +26,7 @@
                             <li {% if 'fortune_list_top' == route %}class="active"{% endif %}><a href="{{ url('fortune_list_top')}}">Top</a></li>
                             <li {% if 'fortune_list_flop' == route %}class="active"{% endif %}><a href="{{ url('fortune_list_flop')}}">Flop</a></li>
                         </ul>
-                    </div>
+                    </nav>
                 {% endblock %}
                 {% block flash %}
                     {% for level in ['success', 'info', 'alert', 'danger'] %}
