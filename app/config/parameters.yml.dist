@@ -9,4 +9,4 @@ parameters:
     locale:            en
     secret:            ThisTokenIsSoSecretDontNeedToChangeIt
 
-    %security.user.password%: Only needed if you set up security. See README.md
+    security.user.password: Only needed if you set up security. See README.md
