@@ -19,6 +19,15 @@ Installation
 
     # Enjoy
 
+Security
+--------
+
+If you want to add a security layer to this application, copy
+`app/config.security.yml.dist` to `app/config.security.yml`. By default, this
+file add HTTP Basic authentication with the `user` as username. The password
+(plain text) is stored in `app/config/parameter.yml`. But feed free to adapt to
+your needs.
+
 License
 -------
 

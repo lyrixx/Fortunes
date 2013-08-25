@@ -17,6 +17,10 @@ class AppKernel extends Kernel
             new Lyrixx\Bundle\FortuneBundle\LyrixxFortuneBundle(),
         );
 
+        if (file_exists(__DIR__.'/config/security.yml')) {
+            $bundles[] = new Symfony\Bundle\SecurityBundle\SecurityBundle();
+        }
+
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
@@ -29,5 +33,9 @@ class AppKernel extends Kernel
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
+
+        if (file_exists(__DIR__.'/config/security.yml')) {
+            $loader->load(__DIR__.'/config/security.yml');
+        }
     }
 }
