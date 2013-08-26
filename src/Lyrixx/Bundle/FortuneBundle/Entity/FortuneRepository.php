@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityRepository;
 
 class FortuneRepository extends EntityRepository
 {
-    public function createQueryBuilderOrderByAndFilterBy($orderBy = null, $search = null)
+    public function createQueryBuilderOrderByAndFilterBy($orderBy = null, $search = null, $extact = false)
     {
         $qb =  $this->createQueryBuilder('f');
         if ('votes_desc' == $orderBy) {
@@ -16,10 +16,12 @@ class FortuneRepository extends EntityRepository
         }
 
         if ($search) {
-            $qb
-                ->andWhere('f.quotes like :author')
-                ->setParameter('author', sprintf('%%%s%%', $search))
-            ;
+            $qb->andWhere('f.quotes like :author');
+            if ($extact) {
+                $qb->setParameter('author', sprintf('<%%%s%%>', $search));
+            } else {
+                $qb->setParameter('author', sprintf('%%%s%%', $search));
+            }
         }
 
         return $qb->addOrderBy('f.createdAt', 'DESC');
