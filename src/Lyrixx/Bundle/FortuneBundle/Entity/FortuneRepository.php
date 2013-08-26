@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityRepository;
 
 class FortuneRepository extends EntityRepository
 {
-    public function createQueryBuilderFilterBy($orderBy = null, $limit = 10)
+    public function createQueryBuilderFilterBy($orderBy = null)
     {
         $qb =  $this->createQueryBuilder('f');
         if ('votes_desc' == $orderBy) {
@@ -17,7 +17,6 @@ class FortuneRepository extends EntityRepository
 
         return $qb
             ->addOrderBy('f.createdAt', 'DESC')
-            ->setMaxResults($limit)
         ;
     }
 }
