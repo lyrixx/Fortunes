@@ -1,8 +1,52 @@
 {% extends '@LyrixxFortune/layout.html.twig' %}
 
 {% block content %}
-    {% for fortune in pager.currentPageResults %}
-        {{ include('@LyrixxFortune/Front/fortune.html.twig', {fortune: fortune, token: token}, with_context = false) }}
+    {% if pager.currentPageResults|length %}
+        {% if app.request.query.has('q') %}
+            <p>
+
+                Order results by
+                <a href="{{ url('fortune_list', {q: app.request.query.get('q') }) }}">date</a>,
+                <a href="{{ url('fortune_list_top', {q: app.request.query.get('q') }) }}">best vote</a>,
+                <a href="{{ url('fortune_list_flop', {q: app.request.query.get('q') }) }}">worst vote</a>
+
+            </p>
+        {% endif %}
+
+        {% for fortune in pager.currentPageResults %}
+            {{ include('@LyrixxFortune/Front/fortune.html.twig', {fortune: fortune, token: token}, with_context = false) }}
+        {% endfor %}
+
+        {% if pager.haveToPaginate %}
+            <ul class="pagination pagination-lg">
+                <li{% if 1 == pager.currentPage %} class="disabled"{% endif %}>
+                    <a href="{{ url(app.request.attributes.get('_route'), {page: 1}) }}">&laquo;&laquo;</a>
+                </li>
+                <li{% if not pager.hasPreviousPage %} class="disabled"{% endif %}>
+                    <a href="{{ pager.hasPreviousPage ? url(app.request.attributes.get('_route'), {page: pager.getPreviousPage }) : 1 }}">&laquo;</a>
+                </li>
+                {% set min = pager.currentPage - 5 < 1 ? 1 : pager.currentPage - 5 %}
+                {% set max = pager.currentPage + 5 > pager.nbPages ? pager.nbPages : pager.currentPage + 5 %}
+                {% for page in min..max %}
+                    <li{% if page == pager.currentPage %} class="active"{% endif %}>
+                        <a href="{{ url(app.request.attributes.get('_route'), {page: page}) }}">
+                            {{ page }}{% if page == pager.currentPage %} <span class="sr-only">(current)</span>{% endif %}
+                        </a>
+                    </li>
+                {% endfor %}
+                <li{% if not pager.hasNextPage %} class="disabled"{% endif %}>
+                    <a href="{{ pager.hasNextPage ? url(app.request.attributes.get('_route'), {page:  pager.currentPage + 1}) : pager.nbPages}}">&raquo;</a>
+                </li>
+                <li{% if not pager.hasNextPage %} class="disabled"{% endif %}>
+                    <a href="{{ url(app.request.attributes.get('_route'), {page: pager.nbPages}) }}">&raquo;&raquo;</a>
+                </li>
+            </ul>
+        {% endif %}
+
+        <p class="pull-right">
+            <a href="{{ url('fortune_new') }}" class="btn btn-primary">add a new one</a>
+        </p>
+
     {% else %}
         {% if app.request.query.has('q') %}
             Nothing match your query,
@@ -11,36 +55,6 @@
         {% endif %}
         but you can
         <a href="{{ url('fortune_new') }}" class="btn btn-primary">add a new one</a>
-    {% endfor %}
-    {% if pager.haveToPaginate %}
-        <ul class="pagination pagination-lg">
-            <li{% if 1 == pager.currentPage %} class="disabled"{% endif %}>
-                <a href="{{ url(app.request.attributes.get('_route'), {page: 1}) }}">&laquo;&laquo;</a>
-            </li>
-            <li{% if not pager.hasPreviousPage %} class="disabled"{% endif %}>
-                <a href="{{ pager.hasPreviousPage ? url(app.request.attributes.get('_route'), {page: pager.getPreviousPage }) : 1 }}">&laquo;</a>
-            </li>
-            {% set min = pager.currentPage - 5 < 1 ? 1 : pager.currentPage - 5 %}
-            {% set max = pager.currentPage + 5 > pager.nbPages ? pager.nbPages : pager.currentPage + 5 %}
-            {% for page in min..max %}
-                <li{% if page == pager.currentPage %} class="active"{% endif %}>
-                    <a href="{{ url(app.request.attributes.get('_route'), {page: page}) }}">
-                        {{ page }}{% if page == pager.currentPage %} <span class="sr-only">(current)</span>{% endif %}
-                    </a>
-                </li>
-            {% endfor %}
-            <li{% if not pager.hasNextPage %} class="disabled"{% endif %}>
-                <a href="{{ pager.hasNextPage ? url(app.request.attributes.get('_route'), {page:  pager.currentPage + 1}) : pager.nbPages}}">&raquo;</a>
-            </li>
-            <li{% if not pager.hasNextPage %} class="disabled"{% endif %}>
-                <a href="{{ url(app.request.attributes.get('_route'), {page: pager.nbPages}) }}">&raquo;&raquo;</a>
-            </li>
-        </ul>
-    {% endif %}
-    {% if pager.currentPageResults|length %}
-        <p class="pull-right">
-            <a href="{{ url('fortune_new') }}" class="btn btn-primary">add a new one</a>
-        </p>
     {% endif %}
 {% endblock %}
 
