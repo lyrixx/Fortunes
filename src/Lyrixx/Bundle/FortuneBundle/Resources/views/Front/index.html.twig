@@ -4,7 +4,12 @@
     {% for fortune in pager.currentPageResults %}
         {{ include('@LyrixxFortune/Front/fortune.html.twig', {fortune: fortune, token: token}, with_context = false) }}
     {% else %}
-        There is no fortunes yet, but you can
+        {% if app.request.query.has('q') %}
+            Nothing match your query,
+        {% else %}
+            There is no fortunes yet,
+        {% endif %}
+        but you can
         <a href="{{ url('fortune_new') }}" class="btn btn-primary">add a new one</a>
     {% endfor %}
     {% if pager.haveToPaginate %}

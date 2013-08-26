@@ -17,7 +17,13 @@
         {% block body %}
             <div class="container">
                 {% block nav %}
-                    <nav class="navbar navbar-default" role="navigation">
+                    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
                         <a class="navbar-brand" href="{{ url('fortune_list')}}">Fortunes</a>
                         <ul class="nav navbar-nav">
                             {% set route = app.request.attributes.get('_route') %}
@@ -26,6 +32,12 @@
                             <li {% if 'fortune_list_top' == route %}class="active"{% endif %}><a href="{{ url('fortune_list_top')}}">Top</a></li>
                             <li {% if 'fortune_list_flop' == route %}class="active"{% endif %}><a href="{{ url('fortune_list_flop')}}">Flop</a></li>
                         </ul>
+                        <form method="get" action="{{ url('fortune_list_top') }}" class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" name="q" class="form-control" placeholder="Search"{% if app.request.query.has('q') %} value="{{ app.request.query.get('q') }}"{% endif %}>
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
                     </nav>
                 {% endblock %}
                 {% block flash %}

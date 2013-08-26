@@ -29,7 +29,7 @@ class FrontController extends Controller
     {
         $qb = $this->getDoctrine()
             ->getRepository('LyrixxFortuneBundle:Fortune')
-            ->createQueryBuilderFilterBy($orderBy)
+            ->createQueryBuilderOrderByAndFilterBy($orderBy, $request->query->getAlnum('q'))
         ;
 
         $pager = new Pagerfanta(new DoctrineORMAdapter($qb));
