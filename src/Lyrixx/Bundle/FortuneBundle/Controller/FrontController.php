@@ -4,6 +4,9 @@ namespace Lyrixx\Bundle\FortuneBundle\Controller;
 
 use Lyrixx\Bundle\FortuneBundle\Entity\Fortune;
 use Lyrixx\Bundle\FortuneBundle\Form\FortuneType;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Exception\OutOfRangeCurrentPageException;
+use Pagerfanta\Pagerfanta;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -24,14 +27,21 @@ class FrontController extends Controller
      */
     public function indexAction(Request $request, $orderBy)
     {
-        $fortunes = $this->getDoctrine()
+        $qb = $this->getDoctrine()
             ->getRepository('LyrixxFortuneBundle:Fortune')
-            ->findLasts($orderBy)
+            ->createQueryBuilderFilterBy($orderBy)
         ;
+
+        $pager = new Pagerfanta(new DoctrineORMAdapter($qb));
+        try {
+            $pager->setCurrentPage($request->query->getInt('page', 1));
+        } catch (OutOfRangeCurrentPageException $e) {
+            throw $this->createNotFoundException($e->getMessage());
+        }
 
         $token = $this->get('form.csrf_provider')->generateCsrfToken(self::CSRF_INTENTION);
 
-        return array('fortunes' => $fortunes, 'token' => $token);
+        return array('pager' => $pager, 'token' => $token);
     }
 
     /**
