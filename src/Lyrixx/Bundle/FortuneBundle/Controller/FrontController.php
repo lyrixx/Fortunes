@@ -52,7 +52,7 @@ class FrontController extends Controller
     {
         $fortune = new Fortune();
         $form = $this->createForm(new FortuneType(), $fortune);
-        if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
+        if ($request->isMethod('POST') && $form->submit($request)->isValid() && $form->get('save')->isClicked()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($fortune);
             $em->flush();
@@ -62,7 +62,10 @@ class FrontController extends Controller
             return $this->redirect($this->generateUrl('fortune_list'));
         }
 
-        return array('form' => $form->createView());
+        return array(
+            'form' => $form->createView(),
+            'preview' => $form->isValid(),
+        );
     }
 
     /**

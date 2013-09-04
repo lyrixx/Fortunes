@@ -17,7 +17,8 @@ class FortuneType extends AbstractType
         $builder
             ->add('quotes', 'textarea', array('attr' => array('placeholder' => '<nickname> quote', 'rows' => '5')))
             ->add('author', 'text', array('required' => false))
-            ->add('submit', 'submit')
+            ->add('save', 'submit')
+            ->add('preview', 'submit')
         ;
     }
 

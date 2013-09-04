@@ -1,0 +1,12 @@
+<dl class="dl-horizontal">
+    {% for quote in fortune.quotesAsArray %}
+        <dt>
+            {% if quote.nick is defined %}
+                <a href="{{ url('fortune_list', { q: quote.nick, extact: true }) }}">
+                    {{ random_color(quote.nick) }}
+                </a>
+            {% endif %}
+        </dt>
+        <dd>{{ quote.quote }}</dd>
+    {% endfor %}
+</dl>
