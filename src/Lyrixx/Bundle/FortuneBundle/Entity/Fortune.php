@@ -76,10 +76,6 @@ class Fortune
         $quotes = array();
 
         foreach (explode("\n", $this->quotes) as $line) {
-            if (!trim($line)) {
-                continue;
-            }
-
             if (preg_match('/^<(?P<nick>.*)>\s*(?P<quote>.*)\s*$/', trim($line), $matches)) {
                 $quotes[] = array(
                     'nick' => $matches['nick'],
@@ -87,6 +83,7 @@ class Fortune
                 );
             } else {
                 $quotes[] = array(
+                    'nick' => '',
                     'quote' => trim($line),
                 );
             }
@@ -101,11 +98,7 @@ class Fortune
     public function isQuotesValid()
     {
         foreach (explode("\n", $this->quotes) as $line) {
-            if (!trim($line)) {
-                continue;
-            }
-
-            if (!preg_match('/^<.*>.*$/', trim($line), $matches)) {
+            if (!preg_match('/^<.+>.+$/', trim($line), $matches)) {
                 return false;
             }
         }
