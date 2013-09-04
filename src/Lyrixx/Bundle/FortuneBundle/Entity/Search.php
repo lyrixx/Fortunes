@@ -51,6 +51,6 @@ class Search
 
     public function exactMatching()
     {
-        return $exactMatching;
+        return $this->exactMatching;
     }
 }
