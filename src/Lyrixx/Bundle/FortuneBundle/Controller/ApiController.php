@@ -1,0 +1,30 @@
+<?php
+
+namespace Lyrixx\Bundle\FortuneBundle\Controller;
+
+use Doctrine\ORM\AbstractQuery;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+/**
+ * @Template()
+ * @Route("/api")
+ */
+class ApiController extends Controller
+{
+
+    /**
+     * @Route("/fortunes", name="api_fortune_list")
+     */
+    public function indexAction()
+    {
+        $qb = $this->getDoctrine()
+            ->getRepository('LyrixxFortuneBundle:Fortune')
+            ->findAllOrderByAndFilterByAsArray()
+        ;
+
+        return new JsonResponse($qb);
+    }
+}
