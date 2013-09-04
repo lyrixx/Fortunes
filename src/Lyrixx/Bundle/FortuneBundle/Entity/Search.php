@@ -2,6 +2,8 @@
 
 namespace Lyrixx\Bundle\FortuneBundle\Entity;
 
+use Symfony\Component\HttpFoundation\Request;
+
 class Search
 {
     private $orderBy;
@@ -26,6 +28,15 @@ class Search
         foreach ($params as $key => $value) {
             $this->$key = $value;
         }
+    }
+
+    public static function createFromRequest(Request $request)
+    {
+        return new self(array(
+            'orderBy' => $request->attributes->get('orderBy'),
+            'search' => $request->query->getAlnum('q'),
+            'exactMatching' => $request->query->getAlnum('exact'),
+        ));
     }
 
     public function orderBy()

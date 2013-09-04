@@ -26,15 +26,11 @@ class FrontController extends Controller
      * @Route("/top", name="fortune_list_top", defaults={"orderBy"="votes_desc"})
      * @Route("/flop", name="fortune_list_flop", defaults={"orderBy"="votes_asc"})
      */
-    public function indexAction(Request $request, $orderBy)
+    public function indexAction(Request $request)
     {
         $qb = $this->getDoctrine()
             ->getRepository('LyrixxFortuneBundle:Fortune')
-            ->createQueryWithSearch(new Search(array(
-                'orderBy' => $orderBy,
-                'search' => $request->query->getAlnum('q'),
-                'exactMatching' => $request->query->getAlnum('exact'),
-            )))
+            ->createQueryWithSearch(Search::createFromRequest($request))
         ;
 
         $pager = new Pagerfanta(new DoctrineORMAdapter($qb));
