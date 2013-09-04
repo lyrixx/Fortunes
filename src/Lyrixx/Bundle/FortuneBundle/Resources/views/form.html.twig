@@ -23,10 +23,14 @@
 {% spaceless %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn btn-primary')|trim}) %}
     {{ parent() }}
-
 {% endspaceless %}
 {% endblock button_attributes %}
 
+{% block button_row %}
+{% spaceless %}
+    {{ form_widget(form) }}&nbsp;
+{% endspaceless %}
+{% endblock button_row %}
 
 {% block form_label %}
 {% spaceless %}
