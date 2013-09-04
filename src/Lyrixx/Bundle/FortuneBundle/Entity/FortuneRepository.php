@@ -7,35 +7,34 @@ use Doctrine\ORM\EntityRepository;
 
 class FortuneRepository extends EntityRepository
 {
-    public function createQueryBuilderOrderByAndFilterBy($orderBy = null, $search = null, $extact = false)
+    public function createQueryWithSearch(Search $search)
     {
         $qb = $this->createQueryBuilder('f');
-        if ('votes_desc' == $orderBy) {
+        if ('votes_desc' == $search->orderBy()) {
             $qb->orderBy('f.votes', 'DESC');
-        } elseif ('votes_asc' == $orderBy) {
+        } elseif ('votes_asc' == $search->orderBy()) {
             $qb->orderBy('f.votes', 'ASC');
         }
 
-        if ($search) {
+        if ($search->search()) {
             $qb->andWhere('f.quotes like :author');
-            if ($extact) {
-                $qb->setParameter('author', sprintf('<%%%s%%>', $search));
+            if ($search->extactMatching()) {
+                $qb->setParameter('author', sprintf('<%%%s%%>', $search->search()));
             } else {
-                $qb->setParameter('author', sprintf('%%%s%%', $search));
+                $qb->setParameter('author', sprintf('%%%s%%', $search->search()));
             }
         }
 
         return $qb->addOrderBy('f.createdAt', 'DESC');
     }
 
-    public function findAllOrderByAndFilterByAsArray($orderBy = null, $search = null, $extact = false)
+    public function findAll()
     {
         $fortunes = $this
-            ->createQueryBuilderOrderByAndFilterBy($orderBy, $search, $extact)
+            ->createQueryWithSearch(new Search())
             ->getQuery()
             ->getResult()
         ;
-
 
         return array_map(function(Fortune $fortune) {
             return array(

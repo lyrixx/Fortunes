@@ -3,6 +3,7 @@
 namespace Lyrixx\Bundle\FortuneBundle\Controller;
 
 use Lyrixx\Bundle\FortuneBundle\Entity\Fortune;
+use Lyrixx\Bundle\FortuneBundle\Entity\Search;
 use Lyrixx\Bundle\FortuneBundle\Form\FortuneType;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Exception\OutOfRangeCurrentPageException;
@@ -29,7 +30,11 @@ class FrontController extends Controller
     {
         $qb = $this->getDoctrine()
             ->getRepository('LyrixxFortuneBundle:Fortune')
-            ->createQueryBuilderOrderByAndFilterBy($orderBy, $request->query->getAlnum('q'), $request->query->getAlnum('exact'))
+            ->createQueryWithSearch(new Search(array(
+                'orderBy' => $orderBy,
+                'search' => $request->query->getAlnum('q'),
+                'exactMatching' => $request->query->getAlnum('exact'),
+            )))
         ;
 
         $pager = new Pagerfanta(new DoctrineORMAdapter($qb));

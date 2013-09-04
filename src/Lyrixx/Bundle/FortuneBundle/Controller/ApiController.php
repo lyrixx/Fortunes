@@ -20,11 +20,11 @@ class ApiController extends Controller
      */
     public function indexAction()
     {
-        $qb = $this->getDoctrine()
+        $fortunes = $this->getDoctrine()
             ->getRepository('LyrixxFortuneBundle:Fortune')
-            ->findAllOrderByAndFilterByAsArray()
+            ->findAll()
         ;
 
-        return new JsonResponse($qb);
+        return new JsonResponse($fortunes);
     }
 }
