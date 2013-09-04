@@ -45,7 +45,7 @@ EOL
         $expected = array(
             array(
                 'nick' => '',
-                'quote' => 'This line should not exist, expects when importing legacy fortune.',
+                'quote' => 'This line should not exist, exept when importing legacy fortunes.',
             ),
             array(
                 'nick' => 'me',
