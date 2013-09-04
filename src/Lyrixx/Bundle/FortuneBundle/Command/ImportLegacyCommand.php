@@ -67,7 +67,7 @@ class ImportLegacyCommand extends ContainerAwareCommand
             $votes->setValue($fortune, $row['vote']);
             $createdAt->setValue($fortune, new \DateTime($row['date']));
 
-            if(!$this->validateLegacy($input, $output, $fortune, $row)) {
+            if (!$this->validateLegacy($input, $output, $fortune, $row)) {
                 $j++;
                 continue;
             }
@@ -146,4 +146,3 @@ class ImportLegacyCommand extends ContainerAwareCommand
         return true;
     }
 }
-

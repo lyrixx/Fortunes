@@ -2,7 +2,6 @@
 
 namespace Lyrixx\Bundle\FortuneBundle\Entity;
 
-use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
 
 class FortuneRepository extends EntityRepository
