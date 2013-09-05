@@ -2,7 +2,7 @@
     {% for quote in fortune.quotesAsArray %}
         <dt>
             {% if quote.nick is defined %}
-                <a href="{{ url('fortune_list', { q: quote.nick, extact: true }) }}">
+                <a href="{{ url('fortune_list', { q: quote.nick, exact: true }) }}">
                     {{ random_color(quote.nick) }}
                 </a>
             {% endif %}

@@ -35,7 +35,7 @@ class Search
         return new self(array(
             'orderBy' => $request->attributes->get('orderBy'),
             'search' => $request->query->getAlnum('q'),
-            'exactMatching' => $request->query->getAlnum('exact'),
+            'exactMatching' => (bool) $request->query->getAlnum('exact'),
         ));
     }
 

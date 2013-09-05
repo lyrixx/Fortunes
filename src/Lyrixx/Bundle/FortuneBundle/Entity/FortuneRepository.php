@@ -17,8 +17,8 @@ class FortuneRepository extends EntityRepository
 
         if ($search->search()) {
             $qb->andWhere('f.quotes like :author');
-            if ($search->extactMatching()) {
-                $qb->setParameter('author', sprintf('<%%%s%%>', $search->search()));
+            if ($search->exactMatching()) {
+                $qb->setParameter('author', sprintf('%%<%s>%%', $search->search()));
             } else {
                 $qb->setParameter('author', sprintf('%%%s%%', $search->search()));
             }
