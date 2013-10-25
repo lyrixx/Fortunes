@@ -65,7 +65,7 @@ class Fortune
         } elseif ('down' == $dir) {
             $this->votes--;
         } else {
-            throw new InvalidArgumentException(sprintf('The "%s" direction is not a valid choices ("down", "up").', $dir));
+            throw new \InvalidArgumentException(sprintf('The "%s" direction is not a valid choices ("down", "up").', $dir));
         }
 
         return $this;
