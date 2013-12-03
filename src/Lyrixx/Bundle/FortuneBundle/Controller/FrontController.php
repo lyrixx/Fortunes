@@ -10,12 +10,14 @@ use Pagerfanta\Exception\OutOfRangeCurrentPageException;
 use Pagerfanta\Pagerfanta;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Template()
+ * @Method("GET")
  */
 class FrontController extends Controller
 {
@@ -47,6 +49,7 @@ class FrontController extends Controller
 
     /**
      * @Route("/new", name="fortune_new")
+     * @Method("GET|POST")
      */
     public function newAction(Request $request)
     {
