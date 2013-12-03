@@ -9,7 +9,7 @@
     "require": {
         "components/jquery": "2.0.*",
         "doctrine/doctrine-bundle": "1.2.*",
-        "doctrine/orm": ">=2.2.3,<2.4-dev",
+        "doctrine/orm": "~2.4.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "leafo/lessphp": "0.4.*",
         "pagerfanta/pagerfanta": "1.0.*",
@@ -18,7 +18,7 @@
         "sensio/generator-bundle": "2.3.*",
         "symfony/assetic-bundle": "2.3.*",
         "symfony/monolog-bundle": "2.3.*",
-        "symfony/symfony": "2.3.*",
+        "symfony/symfony": "2.4.*",
         "twitter/bootstrap": "v3.0.0",
         "twig/extensions": "1.0.*"
     },
