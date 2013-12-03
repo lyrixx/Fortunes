@@ -20,6 +20,7 @@
         "symfony/monolog-bundle": "2.3.*",
         "symfony/symfony": "2.4.*",
         "twitter/bootstrap": "v3.0.0",
+        "twig/twig": "~1.15@dev",
         "twig/extensions": "1.0.*"
     },
     "scripts": {

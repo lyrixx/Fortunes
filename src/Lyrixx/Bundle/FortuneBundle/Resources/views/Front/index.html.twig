@@ -28,9 +28,7 @@
                 <li{% if not pager.hasPreviousPage %} class="disabled"{% endif %}>
                     <a href="{{ url(app.request.attributes.get('_route'), query|merge({page: pager.hasPreviousPage ?  pager.getPreviousPage : 1 }) ) }}">&laquo;</a>
                 </li>
-                {% set min = pager.currentPage - 5 < 1 ? 1 : pager.currentPage - 5 %}
-                {% set max = pager.currentPage + 5 > pager.nbPages ? pager.nbPages : pager.currentPage + 5 %}
-                {% for page in min..max %}
+                {% for page in range(max(1, pager.currentPage - 5), min(pager.currentPage + 5, pager.nbPages)) %}
                     <li{% if page == pager.currentPage %} class="active"{% endif %}>
                         <a href="{{ url(app.request.attributes.get('_route'), query|merge({page: page}) ) }}">
                             {{ page }}{% if page == pager.currentPage %} <span class="sr-only">(current)</span>{% endif %}
