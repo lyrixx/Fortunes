@@ -45,7 +45,7 @@ class ImportLegacyCommand extends ContainerAwareCommand
             throw new \InvalidArgumentException(sprintf('Imposible to read the database "%s".', $database));
         }
 
-        $rows = $this->getLagacyFortune($database);
+        $rows = $this->getLegacyFortune($database);
 
         $em = $this->getContainer()->get('doctrine')->getManager();
         $i = $j = 0;
@@ -88,7 +88,7 @@ class ImportLegacyCommand extends ContainerAwareCommand
         }
     }
 
-    public function getLagacyFortune($database)
+    private function getLegacyFortune($database)
     {
         $conn = new \PDO('sqlite:'.$database);
 
