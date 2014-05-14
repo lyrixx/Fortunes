@@ -76,7 +76,7 @@ class Fortune
         $quotes = array();
 
         foreach (explode("\n", $this->quotes) as $line) {
-            if (preg_match('/^<(?P<nick>.*)>\s*(?P<quote>.*)\s*$/', trim($line), $matches)) {
+            if (preg_match('/^<(?P<nick>.*?)>\s*(?P<quote>.*)\s*$/', trim($line), $matches)) {
                 $quotes[] = array(
                     'nick' => $matches['nick'],
                     'quote' => $matches['quote'],

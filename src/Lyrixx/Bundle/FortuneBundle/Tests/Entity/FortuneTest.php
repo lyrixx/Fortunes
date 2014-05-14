@@ -39,6 +39,7 @@ EOL
 This line should not exist, expects when importing legacy fortune.
 <me> Hello
 <him> Hi !
+<her> coucou => ca va ?
 EOL
         );
 
@@ -54,6 +55,10 @@ EOL
             array(
                 'nick' => 'him',
                 'quote' => 'Hi !',
+            ),
+            array(
+                'nick' => 'her',
+                'quote' => 'coucou => ca va ?',
             ),
         );
 
