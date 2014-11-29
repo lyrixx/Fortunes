@@ -3,10 +3,7 @@
 /app/config/parameters.yml
 /app/config/security.yml
 /app/logs/
-/components/
 /bin/
 /build/
 /vendor/
 /web/bundles/
-/web/css/
-/web/js/

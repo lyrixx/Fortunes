@@ -7,20 +7,17 @@
         "psr-0": { "": "src/" }
     },
     "require": {
-        "components/jquery": "2.0.*",
         "doctrine/doctrine-bundle": "1.2.*",
         "doctrine/orm": "~2.4.0",
         "incenteev/composer-parameter-handler": "~2.0",
-        "leafo/lessphp": "0.4.*",
         "pagerfanta/pagerfanta": "1.0.*",
         "sensio/distribution-bundle": "2.3.*",
         "sensio/framework-extra-bundle": "2.3.*",
         "sensio/generator-bundle": "2.3.*",
-        "symfony/assetic-bundle": "2.3.*",
         "symfony/monolog-bundle": "2.3.*",
         "symfony/symfony": "2.5.*",
         "twitter/bootstrap": "~3.0.0",
-        "twig/twig": "~1.15@dev",
+        "twig/twig": "~1.15",
         "twig/extensions": "1.0.*"
     },
     "scripts": {

@@ -4,13 +4,12 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Fortunes{% endblock %}</title>
-        {% block stylesheets %}
-            {% stylesheets filter="lessphp" output="css/styles.css"
-                 "@LyrixxFortuneBundle/Resources/public/less/styles.less"
-            %}
-                <link rel="stylesheet" href="{{ asset(asset_url) }}"  media="screen"/>
-            {% endstylesheets %}
-        {% endblock %}
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+        <style>
+            body {
+                padding-top: 70px;
+            }
+        </style>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
@@ -54,16 +53,10 @@
             </div>
         {% endblock %}
         {% block javascripts %}
-            {% javascripts output='js/script.js'
-                '../components/jquery/jquery.min.js'
-                '../vendor/twitter/bootstrap/js/tooltip.js'
-                '../vendor/twitter/bootstrap/js/*.js'
-                '@LyrixxFortuneBundle/Resources/public/js/storage.js'
-                '@LyrixxFortuneBundle/Resources/public/js/votes.js'
-            %}
-                <script type="text/javascript" src="{{ asset(asset_url) }}"></script>
-            {% endjavascripts %}
-
+            <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+            <script src="{{ asset('js/storage.js') }}"></script>
+            <script src="{{ asset('js/votes.js') }}"></script>
         {% endblock %}
     </body>
 </html>
