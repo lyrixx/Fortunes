@@ -29,15 +29,6 @@ twig:
         resources:
             - LyrixxFortuneBundle::form.html.twig
 
-# Assetic Configuration
-assetic:
-    debug:          %kernel.debug%
-    use_controller: false
-    bundles:        [ LyrixxFortuneBundle ]
-    filters:
-        lessphp: ~
-        cssrewrite: ~
-
 # Doctrine Configuration
 doctrine:
     dbal:
