@@ -91,7 +91,7 @@ class FrontController extends Controller
     public function voteAction(Request $request, Fortune $fortune, $dir, $token)
     {
         if (!$this->get('form.csrf_provider')->isCsrfTokenValid(self::CSRF_INTENTION, $token)) {
-            throw $this->createNotFunction('Invalid CSRF');
+            throw $this->createNotFoundException('Invalid CSRF');
         }
 
         $fortune->vote($dir);
