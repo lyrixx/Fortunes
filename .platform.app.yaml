@@ -35,3 +35,10 @@ hooks:
       rm web/app_dev.php
     deploy: |
       app/console --env=prod cache:clear
+
+runtime:
+  extensions:
+    - name: blackfire
+      configuration:
+        server_id: "adad4e6a-00b1-4ff2-b4b9-3458fa6680b6"
+        server_token: "94505faad56a8c884d6cceab45186fb0115e481b1b1b976b57ae7259c21a77a7"
