@@ -40,5 +40,5 @@ runtime:
   extensions:
     - name: blackfire
       configuration:
-        server_id: "adad4e6a-00b1-4ff2-b4b9-3458fa6680b6"
-        server_token: "94505faad56a8c884d6cceab45186fb0115e481b1b1b976b57ae7259c21a77a7"
+        server_id: "05b494ac-b8a1-4440-91f3-c6f003cbb08b"
+        server_token: "bb6e59e413d5065db943c47b325006b602c46e70ac0db145dd9ac1fba4689737"
