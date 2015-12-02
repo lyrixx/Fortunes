@@ -2,6 +2,9 @@ imports:
     - { resource: parameters.yml }
     - { resource: parameters_platform.php }
 
+parameters:
+    locale: en
+
 framework:
     #esi:             ~
     #translator:      { fallback: %locale% }
@@ -26,9 +29,8 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
-    form:
-        resources:
-            - LyrixxFortuneBundle::form.html.twig
+    form_themes:
+        - LyrixxFortuneBundle::form.html.twig
 
 # Doctrine Configuration
 doctrine:

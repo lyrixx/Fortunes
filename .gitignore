@@ -1,8 +1,13 @@
+!app/cache/.gitkeep
+!app/logs/.gitkeep
 /app/bootstrap.php.cache
-/app/cache/
+/app/cache/*
+/app/check.php
 /app/config/parameters.yml
 /app/config/security.yml
-/app/logs/
+/app/logs/*
+/app/phpunit.xml
+/app/SymfonyRequirements.php
 /bin/
 /build/
 /vendor/

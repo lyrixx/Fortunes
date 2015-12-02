@@ -8,6 +8,7 @@ use Lyrixx\Bundle\FortuneBundle\Form\FortuneType;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Exception\OutOfRangeCurrentPageException;
 use Pagerfanta\Pagerfanta;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,12 +17,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Template()
- * @Route("", requirements={"_method"="GET"})
+ * @Route("")
+ * @Method("GET")
  */
 class FrontController extends Controller
 {
-    const CSRF_INTENTION = 'fortune';
-
     /**
      * @Route("/", name="fortune_list", defaults={"orderBy"=null})
      * @Route("/top", name="fortune_list_top", defaults={"orderBy"="votes_desc"})
@@ -41,19 +41,18 @@ class FrontController extends Controller
             throw $this->createNotFoundException($e->getMessage());
         }
 
-        $token = $this->get('form.csrf_provider')->generateCsrfToken(self::CSRF_INTENTION);
-
-        return array('pager' => $pager, 'token' => $token);
+        return ['pager' => $pager];
     }
 
     /**
-     * @Route("/new", name="fortune_new", requirements={"_method"="GET|POST"})
+     * @Route("/new", name="fortune_new")
+     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
         $fortune = new Fortune();
-        $form = $this->createForm(new FortuneType(), $fortune);
-        if ($request->isMethod('POST') && $form->submit($request)->isValid() && $form->get('save')->isClicked()) {
+        $form = $this->createForm(FortuneType::class, $fortune);
+        if ($form->handleRequest($request)->isValid() && $form->get('save')->isClicked()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($fortune);
             $em->flush();
@@ -74,9 +73,6 @@ class FrontController extends Controller
      */
     public function showAction(Fortune $fortune)
     {
-        $token = $this->get('form.csrf_provider')->generateCsrfToken(self::CSRF_INTENTION);
-
-        return array('fortune' => $fortune, 'token' => $token);
     }
 
     /**
@@ -90,8 +86,8 @@ class FrontController extends Controller
      */
     public function voteAction(Request $request, Fortune $fortune, $dir, $token)
     {
-        if (!$this->get('form.csrf_provider')->isCsrfTokenValid(self::CSRF_INTENTION, $token)) {
-            throw $this->createNotFoundException('Invalid CSRF');
+        if (!$this->isCsrfTokenValid('', $token)) {
+            throw $this->createNotFoundException('Invalid CSRF.');
         }
 
         $fortune->vote($dir);
