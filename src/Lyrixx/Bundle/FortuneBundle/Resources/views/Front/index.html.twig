@@ -16,7 +16,7 @@
         {% endif %}
 
         {% for fortune in pager.currentPageResults %}
-            {{ include('@LyrixxFortune/Front/fortune.html.twig', {fortune: fortune, token: token}, with_context = false) }}
+            {{ include('@LyrixxFortune/Front/fortune.html.twig', {fortune: fortune, token: csrf_token('')}, with_context = false) }}
         {% endfor %}
 
         {% if pager.haveToPaginate %}

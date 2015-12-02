@@ -2,9 +2,13 @@
 
 namespace Lyrixx\Bundle\FortuneBundle\Form;
 
+use Lyrixx\Bundle\FortuneBundle\Entity\Fortune;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FortuneType extends AbstractType
 {
@@ -15,31 +19,23 @@ class FortuneType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('quotes', 'textarea', array('attr' => array('placeholder' => '<nickname> quote', 'rows' => '5')))
-            ->add('author', 'text', array('required' => false))
-            ->add('save', 'submit')
-            ->add('preview', 'submit')
+            ->add('quotes', TextareaType::class, array('attr' => array('placeholder' => '<nickname> quote', 'rows' => '5')))
+            ->add('author', TextType::class, array('required' => false))
+            ->add('save', SubmitType::class)
+            ->add('preview', SubmitType::class)
         ;
     }
 
     /**
      * @param OptionsResolverInterface $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Lyrixx\Bundle\FortuneBundle\Entity\Fortune',
+            'data_class' => Fortune::class,
             'error_mapping' => array(
                 'quotesValid' => 'quotes',
             ),
         ));
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'fortune';
     }
 }
