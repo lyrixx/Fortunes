@@ -1,0 +1,10 @@
+{% extends '@App/layout.html.twig' %}
+
+{% block content %}
+    {{ include('@App/Front/fortune.html.twig', {fortune: fortune, token: token}, with_context = false) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ include('@App/Front/fortune.js.twig') }}
+{% endblock %}

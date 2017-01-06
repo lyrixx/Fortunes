@@ -3,7 +3,7 @@ imports:
 
 doctrine:
     dbal:
-        dbname:   %database_name%_test
+        dbname: "%database_name%_test"
 
 framework:
     test: ~

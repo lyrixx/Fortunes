@@ -1,5 +1,3 @@
-lyrixx_fortune:
-    resource: "@LyrixxFortuneBundle/Controller/"
+app:
+    resource: "@AppBundle/Controller/"
     type:     annotation
-    prefix:   /
-
