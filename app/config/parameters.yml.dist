@@ -1,11 +1,6 @@
 parameters:
-    database_driver:   pdo_mysql
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     fortunes
-    database_user:     root
-    database_password: ~
+    env(DATABASE_URL): 'pgsql://ubuntu@postgres-9.lxc/fortunes'
 
-    secret:            ThisTokenIsSoSecretDontNeedToChangeIt
+    secret: ThisTokenIsSoSecretDontNeedToChangeIt
 
     security.user.password: Only needed if you set up security. See README.md

@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+    frontend-php:
+        build: docker/frontend-php
+        volumes:
+            - ./:/var/www/html
+            # load all default values from the dist
+            # specific values will be set via the ENV variables
+            - ./app/config/parameters.yml.dist:/var/www/html/app/config/parameters.yml
+            - /var/www/html/var/cache
+            - /var/www/html/var/logs
+            - /var/www/html/var/sessions
+        links:
+            - postgres
+        environment:
+            DATABASE_URL: 'pgsql://postgres@postgres/postgres'
+
+    nginx:
+        build: docker/nginx
+        links:
+            - frontend-php
+        volumes:
+            - ./:/var/www/html
+
+    postgres:
+        image: postgres:9.6

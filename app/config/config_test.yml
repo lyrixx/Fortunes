@@ -3,7 +3,7 @@ imports:
 
 doctrine:
     dbal:
-        dbname: "%database_name%_test"
+        url: "%env(DATABASE_URL)%_test"
 
 framework:
     test: ~

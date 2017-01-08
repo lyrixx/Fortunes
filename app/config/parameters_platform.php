@@ -13,13 +13,9 @@ foreach ($relationships['database'] as $endpoint) {
       continue;
     }
 
-    $container->setParameter('database_driver', 'pdo_' . $endpoint['scheme']);
-    $container->setParameter('database_host', $endpoint['host']);
-    $container->setParameter('database_port', $endpoint['port']);
-    $container->setParameter('database_name', $endpoint['path']);
-    $container->setParameter('database_user', $endpoint['username']);
-    $container->setParameter('database_password', $endpoint['password']);
-    $container->setParameter('database_path', '');
+    $url = sprintf('%s://%s:%s@%s/%s', $endpoint['scheme'], $endpoint['username'], $endpoint['password'], $endpoint['host'], $endpoint['path']);
+
+    $container->setParameter('database_url', $url);
 }
 
 # Store session into /tmp.
