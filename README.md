@@ -6,7 +6,7 @@ Fortunes
 
 Screenshot
 ----------
-[![Screenshot](https://raw.github.com/lyrixx/Fortunes/master/src/Lyrixx/Bundle/FortuneBundle/Resources/doc/screenshot.png)](https://raw.github.com/lyrixx/Fortunes/master/src/Lyrixx/Bundle/FortuneBundle/Resources/doc/screenshot.png)
+[![Screenshot](https://raw.github.com/lyrixx/Fortunes/master/src/AppBundle/Resources/doc/screenshot.png)](https://raw.github.com/lyrixx/Fortunes/master/src/AppBundle/Resources/doc/screenshot.png)
 
 Installation
 ------------
