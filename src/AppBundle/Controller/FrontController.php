@@ -34,7 +34,7 @@ class FrontController extends Controller
             ->createQueryWithSearch(Search::createFromRequest($request))
         ;
 
-        $pager = new Pagerfanta(new DoctrineORMAdapter($qb));
+        $pager = new Pagerfanta(new DoctrineORMAdapter($qb, false));
         try {
             $pager->setCurrentPage($request->query->getInt('page', 1));
         } catch (OutOfRangeCurrentPageException $e) {
