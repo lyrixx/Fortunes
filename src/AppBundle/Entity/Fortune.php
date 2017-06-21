@@ -93,7 +93,7 @@ class Fortune
     }
 
     /**
-     * @Assert\True(message="Quotes are not valid. It should respect the following format: '<nickname> quote...'")
+     * @Assert\IsTrue(message="Quotes are not valid. It should respect the following format: '<nickname> quote...'")
      */
     public function isQuotesValid()
     {

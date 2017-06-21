@@ -22,5 +22,12 @@ class DefaultControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/new');
 
         $this->assertSame(200, $client->getResponse()->getStatusCode());
+
+        $form = $crawler->selectButton('Save')->form();
+        $crawler = $client->submit($form, ['fortune' => [
+            'quotes' => '<greg> hello',
+        ]]);
+
+        $this->assertSame(302, $client->getResponse()->getStatusCode());
     }
 }
