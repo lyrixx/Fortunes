@@ -22,7 +22,8 @@
         "symfony/monolog-bundle": "^3.0.2",
         "symfony/polyfill-apcu": "^1.0",
         "symfony/symfony": "3.2.*",
-        "twitter/bootstrap": "~3.0.0"
+        "twitter/bootstrap": "~3.0.0",
+        "cleentfaar/slack-bundle": "~0.10"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

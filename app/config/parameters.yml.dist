@@ -9,3 +9,9 @@ parameters:
     secret:            ThisTokenIsSoSecretDontNeedToChangeIt
 
     security.user.password: Only needed if you set up security. See README.md
+
+    # slack
+    enable_slack_notification: false
+    slack_channel_name: '#fortunes' # add a channel name
+    slack_channel_username: fortunes # add username for channel
+    slack_channel_icon: ghost #add your custom icon for channel

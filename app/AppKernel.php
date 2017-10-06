@@ -14,6 +14,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
+            new CL\Bundle\SlackBundle\CLSlackBundle(),
         );
 
         if (file_exists(__DIR__.'/config/security.yml')) {

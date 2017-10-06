@@ -8,6 +8,20 @@
         <service id="lyrixx_fortune.twig.extension.fortune" class="AppBundle\Twig\FortuneExtension">
             <tag name="twig.extension" />
         </service>
+
+        <service id="lyrixx_fortune.slack_notificator" class="AppBundle\Twig\FortuneExtension">
+            <argument type="service" id="cl_slack.api_client" />
+            <argument type="service" id="logger" />
+            <argument>%enable_slack_notification%</argument>
+            <argument>%slack_channel_name%</argument>
+            <argument>%slack_channel_username%</argument>
+            <argument>%slack_channel_icon%</argument>
+        </service>
+
+        <service id="lyrixx_fortune.listener.notificator" class="AppBundle\EventListener\NotificatorListener">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="lyrixx_fortune.slack_notificator" />
+        </service>
     </services>
 
 </container>

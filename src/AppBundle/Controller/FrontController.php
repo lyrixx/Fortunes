@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Fortune;
 use AppBundle\Entity\Search;
+use AppBundle\Events\DomainEvents\DomainEvents;
+use AppBundle\Events\FortuneEvent;
 use AppBundle\Form\FortuneType;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Exception\OutOfRangeCurrentPageException;
@@ -56,6 +58,11 @@ class FrontController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($fortune);
             $em->flush();
+
+            $this->get('event_dispatcher')->dispatch(
+                DomainEvents::FORTUNE_CREATED,
+                new FortuneEvent($fortune)
+            );
 
             $request->getSession()->getFlashBag()->add('success', 'The fortune has been created');
 
